@@ -26,4 +26,4 @@ jobs:
         pip install requests beautifulsoup4 pandas
 
     - name: 수급 분석 스크립트 실행
-      run: python main.py
+      run: python stock_bot/main.py
