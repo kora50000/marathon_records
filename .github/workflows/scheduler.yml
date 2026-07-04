@@ -2,7 +2,7 @@ name: Daily Stock Supply and Demand Bot
 
 on:
   schedule:
-    # UTC 기준 오전 5시 31분 = 한국 시간(KST) 오후 2시 31분
+    # UTC 기준 오전 5시 31분 = 한국 시간(KST) 오후 2.시 31분
     # 월요일부터 금요일까지 매일 실행 (토, 일 제외)
     - cron: '31 5 * * 1-5'
   workflow_dispatch: # 필요할 때 언제든 수동으로 가동할 수 있는 버튼 활성화
@@ -23,7 +23,15 @@ jobs:
     - name: 필수 라이브러리 설치
       run: |
         python -m pip install --upgrade pip
-        pip install requests beautifulsoup4 pandas
+        pip install requests beautifulsoup4 pandas supabase yfinance
 
-    - name: 수급 분석 스크립트 실행
+    - name: 수급 분석 및 글로벌 동향 스크립트 실행
+      env:
+        # 🔐 중요: 금고(Secrets) 내 실제 데이터를 파이썬 시스템 환경변수(os.environ) 이름으로 매칭하여 전달합니다.
+        SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+        SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        KIS_APP_KEY: ${{ secrets.KIS_APP_KEY }}
+        KIS_APP_SECRET: ${{ secrets.KIS_APP_SECRET }}
       run: python stock_bot/main.py
