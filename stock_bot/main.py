@@ -4,8 +4,9 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 # 텔레그램 설정 데이터
-TOKEN = "8847068200:AAFp_LHs-ap2l3EzvZ0zv3BiV3RLIYodjb0"
-CHAT_ID = "8934640013"
+TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
+CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
+
 
 def get_top_60_trading_value():
     """네이버 금융에서 코스피/코스닥 거래대금 상위 종목을 수집하여 상위 60개 추출"""
