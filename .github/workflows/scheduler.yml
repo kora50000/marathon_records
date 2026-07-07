@@ -45,7 +45,7 @@ jobs:
 
       # 🎯 [트랙 B] 2시 40분: 시간별 나스닥100 선물지수 브리핑 발송 (★새로 추가)
     - name: Run Nasdaq100 Briefing Bot
-      if: github.event.schedule == '40 5 * * 1-5'
+      if: github.event.schedule == '38 5 * * 1-5'
       env:
         # 🔐 중요: 금고(Secrets) 내 실제 데이터를 파이썬 시스템 환경변수(os.environ) 이름으로 매칭하여 전달합니다.
         SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
