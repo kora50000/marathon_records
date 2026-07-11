@@ -3,7 +3,7 @@ name: Deploy to Supabase Edge Functions
 on:
   push:
     branches:
-      - main  # 기본 브랜치명이 master라면 master로 수정해 주세요!
+      - main  # 기본 브랜치가 master라면 master로 수정
     paths:
       - 'supabase/functions/**'
   workflow_dispatch: # 수동 실행 버튼
@@ -23,7 +23,7 @@ jobs:
 
       - name: 엣지 펑션 배포 실행
         run: |
-          supabase link --project-ref ${{ secrets.SUPABASE_PROJECT_ID }} --password "dummy_password"
-          supabase functions deploy telegram-now --project-ref ${{ secrets.SUPABASE_PROJECT_ID }} --token ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          supabase link --project-ref "${{ secrets.SUPABASE_PROJECT_ID }}" --password "dummy_password"
+          supabase functions deploy telegram-now --project-ref "${{ secrets.SUPABASE_PROJECT_ID }}"
         env:
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
