@@ -5,8 +5,8 @@ import requests
 
 def send_telegram_message():
     # 깃허브 시크릿(환경변수)에서 토큰과 챗 ID를 가져옵니다.
-    TOKEN = os.environ.get("TELEGRAM_TOKEN")
-    CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
+    TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
+    TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 
     # 시크릿 값이 제대로 안 들어왔을 경우 예외 처리
     if not TOKEN or not CHAT_ID:
