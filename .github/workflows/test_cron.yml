@@ -4,7 +4,7 @@ on:
   schedule:
     # 분 시 일 월 요일 (UTC 기준)
     # 한국 시간 16:20 -> UTC 07:20
-    - cron: '20 7 * * *'
+    - cron: '28 7 * * *'
   workflow_dispatch: # 버튼 눌러 즉시 실행 가능
 
 jobs:
