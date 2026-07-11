@@ -1,0 +1,29 @@
+name: Deploy to Supabase Edge Functions
+
+on:
+  push:
+    branches:
+      - main  # 💡 만약 기본 브랜치명이 master라면 master로 수정해 주세요!
+    paths:
+      - 'supabase/functions/**' # 엣지 펑션 코드가 바뀔 때만 작동합니다.
+  workflow_dispatch: # 깃허브에서 수동 배포 버튼도 만들어 줍니다.
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 체크아웃 코드
+        uses: actions/checkout@v3
+
+      - name: Supabase CLI 설치 및 배포
+        uses: supabase/setup-cli@v1
+        with:
+          version: 'latest'
+
+      - name: 엣지 펑션 배포 실행
+        run: |
+          supabase link --project-ref ${{ secrets.SUPABASE_PROJECT_ID }} --password "dummy_password"
+          supabase functions deploy telegram-now --project-ref ${{ secrets.SUPABASE_PROJECT_ID }}
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
