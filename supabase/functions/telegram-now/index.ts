@@ -3,7 +3,7 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 serve(async (req) => {
   try {
     // 1. Supabase 대시보드에 저장할 환경변수 읽어오기
-    const TOKEN = Deno.env.get("TELEGRAM_TOKEN");
+    const TOKEN = Deno.env.get("TELEGRAM_BOT_TOKEN");
     const CHAT_ID = Deno.env.get("TELEGRAM_CHAT_ID");
 
     if (!TOKEN || !CHAT_ID) {
